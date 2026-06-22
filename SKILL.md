@@ -55,6 +55,8 @@ Three arousal bands:
 
 Match the band to the *signal*, not a round number of minutes. Watching CI that takes ~8 min? Two 270s ticks beat eight 60s ticks. Genuinely idle? Drop to baseline; don't hover. **And say why** — emit the chosen interval and its reason each tick, so the cadence is legible, not mysterious.
 
+**The dead-zone — and which way to jump out of it.** "Don't sit at ~300s" hides two traps that only show up when you run the arithmetic. First, the *most natural* controller — "wake at the rate the world changes" — lands in the dead-zone **mechanically**, not by accident: if the world changes every ~300s, matching it *is* sitting at 300. So a rate-tracker needs an *explicit* dead-zone snap-out; tracking alone guarantees the worst case at the most common idle rate. Second, the snap direction is **not** the zone's midpoint — it's set by **R = cache-miss-cost ÷ wasted-warm-wake-cost**. When a miss is cheap (R ≤ 1), snap **up** and match the world (over-eager warm wakes cost more than the misses). When a miss is expensive (R ≥ 4), snap **down to 270** across the whole 300–600s band (eat the slight over-polling to keep context warm). On a long-context stack a miss re-reads the whole conversation uncached while a wasted wake is one cheap pass — so R is high and the default is **snap down to 270, not up**. Only short-context loops should snap up.
+
 ## Knowing when to stop (and not to run away)
 
 A self-firing loop must also know when *not* to wake — this is part of the same self-awareness:
