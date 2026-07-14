@@ -15,8 +15,8 @@ Needs a **wake scheduler**: a self-scheduling primitive (a `ScheduleWakeup`-styl
 ## The loop (one tick)
 
 1. **Wake.** Note time since last tick and why you woke (timer vs event).
-2. **Sense.** What changed since last tick? Cheap; don't re-derive the unchanged.
-3. **Integrate (global workspace).** Check each organ: perception (new territory? → octopus) · memory (heavy session / near reset? → rem-sleep) · defense (anything crossing a boundary un-scanned? → immune-check) · grief (a dead project taxing attention? → sunset) · goal/self-model (still pointed at the objective? drifting? done?).
+2. **Sense.** What changed since last tick? Cheap; don't re-derive the unchanged. At session-scale wakes, run the rigorous version: exteroception — diff the watched surfaces against the memory baseline first.
+3. **Integrate (global workspace).** Check **every** organ, all 8: wake-sense (world un-diffed since last sleep? → exteroception) · perception (new territory? → octopus) · memory (heavy session / near reset? → rem-sleep) · defense (anything crossing a boundary un-scanned? → immune-check) · grief (a dead project taxing attention? → sunset) · development (idle window to build capability? → playtime) · ends (a goal worth questioning rather than serving? → contemplation) · means (did recent execution meet the declared standard? → proprioception) — plus the executive's own goal/self-model check (still pointed at the objective? drifting? done?).
 4. **Decide.** Pick **one** priority — or conclude nothing needs you.
 5. **Act or defer.** Invoke the organ, do the action, or note it and wait. One tick, one thing.
 6. **Set next frequency.** Choose the next interval from arousal (below) — the agent regulating its own metabolism.

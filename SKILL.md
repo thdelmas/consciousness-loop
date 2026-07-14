@@ -31,16 +31,17 @@ If your stack has none of these, the loop degrades to a single pass with a recom
 ## The loop (one tick)
 
 1. **Wake.** The tick fires. Note how long since the last wake and *why* you woke (timer vs event).
-2. **Sense.** Gather what changed since last tick — new inputs, completed work, elapsed time, external state. Cheap; don't re-derive what's unchanged.
-3. **Integrate (the global workspace).** Bring the whole self into one view and check **every** organ's standing. The nervous system is 8: consciousness-loop is the executive running this check; the other **7** each get polled, every tick. Don't truncate the list to the ones that feel relevant — a skipped organ is a blind spot, and the one you skip is the one that was about to flag. Check all seven:
-   - **Perception** — new territory worth a scan? → [octopus](https://github.com/thdelmas/open-source-octopus-investigation)
+2. **Sense.** Gather what changed since last tick — new inputs, completed work, elapsed time, external state. Cheap; don't re-derive what's unchanged. At session-scale wakes (a fresh context, a long sleep), run the rigorous version of this step: [exteroception](https://github.com/thdelmas/exteroception) — diff the watched surfaces against the memory baseline before deciding anything.
+3. **Integrate (the global workspace).** Bring the whole self into one view and check **every** organ's standing. The nervous system is 9: consciousness-loop is the executive running this check; the other **8** each get polled, every tick. Don't truncate the list to the ones that feel relevant — a skipped organ is a blind spot, and the one you skip is the one that was about to flag. Check all eight:
+   - **Wake-sense (near field)** — session freshly started, or the world un-diffed against memory since the last sleep? → [exteroception](https://github.com/thdelmas/exteroception)
+   - **Perception (far field)** — new territory worth a scan? → [octopus](https://github.com/thdelmas/open-source-octopus-investigation)
    - **Memory** — session heavy, store drifting, context near a reset? → [rem-sleep](https://github.com/thdelmas/rem-sleep)
    - **Defense** — anything about to cross a boundary un-scanned? → [immune-check](https://github.com/thdelmas/immune-check)
    - **Grief** — a project gone dead, taxing attention? → [sunset](https://github.com/thdelmas/sunset)
    - **Development** — idle window to build capability before it's needed, or an unfamiliar tool about to be depended on un-rehearsed? → [playtime](https://github.com/thdelmas/playtime)
    - **Ends / why** — a live frame-tension or a goal worth questioning rather than serving? → [contemplation](https://github.com/thdelmas/contemplation)
    - **Means / feedback** — did recent execution meet the declared standard; any error to score and correct? (This is the organ that catches *this loop* running wrong — e.g. integrating against a truncated organ list.) → [proprioception](https://github.com/thdelmas/proprioception)
-   - **Goal/self-model** — am I still pointed at the objective? Drifting? Done? (The executive's own self-check, not one of the 7 organs.)
+   - **Goal/self-model** — am I still pointed at the objective? Drifting? Done? (The executive's own self-check, not one of the 8 organs.)
 4. **Decide.** Pick **one** priority — the single thing that most needs attention now — or conclude nothing does.
 5. **Act or defer.** Invoke the relevant organ, do the action, or note it and let it wait. One tick does one thing; the loop's power is in recurrence, not in cramming.
 6. **Set the next frequency.** Choose the next wake interval from current arousal (below). This step is the agent regulating its own metabolism.
