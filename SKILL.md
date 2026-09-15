@@ -80,3 +80,13 @@ A self-firing loop must also know when *not* to wake — this is part of the sam
 - **Wake and sleep are one cycle.** The loop decides when to invoke rem-sleep; they're complements, not competitors.
 - **Bound every autonomous run.** Know the stop condition and the spend ceiling before the first tick.
 - **Make the cadence legible.** Emit the interval and the reason each tick. Self-regulation you can't see reads as randomness.
+
+## Firing marker
+
+An organ that leaves no trace is indistinguishable from one that never ran. When this organ's cycle runs in prose — no skill call, no script — record the firing at its start so the body's pulse ([proprioception](https://github.com/thdelmas/proprioception)) can see it:
+
+```
+organ-fired.py --mark consciousness-loop "<one-line why>"
+```
+
+`organ-fired.py` ships with proprioception. Without it, emit `[organ:consciousness-loop] <why>` as the first line of output. A host with tool hooks traces invoked runs on its own; the marker is for the runs it cannot see.

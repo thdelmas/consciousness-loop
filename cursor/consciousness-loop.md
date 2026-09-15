@@ -48,3 +48,7 @@ Match the band to the *signal*, not a round number. CI takes ~8 min? Two 270s ti
 - **Wake and sleep are one cycle** — the loop decides when to invoke rem-sleep.
 - **Bound every autonomous run** — know the stop condition and spend ceiling first.
 - **Make the cadence legible** — emit interval + reason each tick.
+
+## Firing marker
+
+Runs in prose leave no trace, and untraced is indistinguishable from dormant. At the start of a prose run record it — `organ-fired.py --mark consciousness-loop "<why>"` (ships with proprioception), or `[organ:consciousness-loop] <why>` as the first output line.
