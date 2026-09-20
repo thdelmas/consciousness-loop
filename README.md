@@ -61,7 +61,7 @@ cp cursor/consciousness-loop.md ~/.cursor/commands/
 6. **Set the next frequency** — choose the interval from arousal.
 7. **Sleep** — schedule the next wake (or hand to an event hook). Sleeping *is* the loop working.
 
-See [`SKILL.md`](./SKILL.md) for the arousal bands, the stop conditions, and the runaway guard.
+See [`SKILL.md`](./SKILL.md) for the arousal bands, the stop conditions, the runaway guard, and the dead man's switch (the human's acknowledgement age as an arousal ceiling).
 
 ## License
 

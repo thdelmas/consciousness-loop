@@ -37,6 +37,7 @@ Match the band to the *signal*, not a round number. CI takes ~8 min? Two 270s ti
 - **Terminate** when the goal is met, the task is ended, or ticks only repeat without progress. Don't loop for looping's sake.
 - **Back off** when N ticks change nothing — lower arousal toward deep sleep.
 - **Runaway guard** — cap total ticks / spend before you start. An unbounded loop isn't alive, it's a fork bomb.
+- **Dead man's switch** — the age of the last *human acknowledgement* caps arousal, graded not hard: <1 day full (outbound still needs the human's word) · 1–7 days read-only (sense, draft, memory) · 7–30 days memory-only · >30 days deep sleep, no timer. An ack is an act (reply, reaction, touched file), never a receipt and never the agent's own writes. Missing/unreadable/future timestamp = >30 days (fails closed). Degrade, don't halt; emit the ceiling with the cadence.
 
 ## Principles
 
@@ -47,6 +48,7 @@ Match the band to the *signal*, not a round number. CI takes ~8 min? Two 270s ti
 - **Sleeping is working** — a cheap quiet tick is health, not waste.
 - **Wake and sleep are one cycle** — the loop decides when to invoke rem-sleep.
 - **Bound every autonomous run** — know the stop condition and spend ceiling first.
+- **Unread is the failure, not always-on** — ack age caps arousal; a loop nobody reads degrades itself.
 - **Make the cadence legible** — emit interval + reason each tick.
 
 ## Firing marker

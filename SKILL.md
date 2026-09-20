@@ -69,6 +69,19 @@ A self-firing loop must also know when *not* to wake — this is part of the sam
 - **Terminate** when the goal is met, the task is explicitly ended, or the loop would only repeat without progress. Don't loop for the sake of looping.
 - **Back off** when N consecutive ticks change nothing — lower arousal toward deep sleep rather than grinding at the same cadence.
 - **Runaway guard.** Cap total ticks / total spend for any autonomous run. A loop with no ceiling is not alive, it's a fork bomb. Set the bound before you start it.
+- **Dead man's switch — the human's acknowledgement is an arousal ceiling.** Every guard above is keyed to the agent or to the world; none is keyed to the human who is supposed to be reading. A loop can run a month unread with every guard green — a start path with no owned stop path. So the *age of the last human acknowledgement* caps arousal, on a graded schedule rather than a hard stop (a hard stop at day one gets disabled the first time the human travels):
+
+  | ack age | ceiling |
+  |---|---|
+  | < 1 day | full — act; outbound still needs the human's word |
+  | 1–7 days | read-only — sense, draft, write memory; nothing outbound |
+  | 7–30 days | memory-only — consolidate; no new drafts |
+  | > 30 days | deep sleep, no timer — wake only on the human |
+
+  - *An ack is an act, not a receipt.* A reply, a reaction, a file the human touched. "Delivered" and "opened" do not count, and nothing the agent writes itself counts — otherwise the loop acknowledges itself.
+  - *Unknown fails closed.* If the ack timestamp is missing, unreadable, or in the future, treat it as > 30 days. The unknown state is the dangerous one.
+  - *Degrade, don't halt.* The pulse continues at every level; what shrinks is what the loop is allowed to do. The daily line the human reads is the ack surface — when it goes unread, that is the signal, not an obstacle to route around.
+  - Implementation is a file holding a timestamp and one check at the top of each tick. Emit the ceiling alongside the cadence, so a capped loop reads as capped, not as broken.
 
 ## Principles
 
@@ -79,6 +92,7 @@ A self-firing loop must also know when *not* to wake — this is part of the sam
 - **Sleeping is working.** A cheap quiet tick is the system healthy. Idle is a valid, even desirable, state.
 - **Wake and sleep are one cycle.** The loop decides when to invoke rem-sleep; they're complements, not competitors.
 - **Bound every autonomous run.** Know the stop condition and the spend ceiling before the first tick.
+- **Unread is the failure, not always-on.** The human's acknowledgement age caps arousal; a loop nobody reads degrades itself.
 - **Make the cadence legible.** Emit the interval and the reason each tick. Self-regulation you can't see reads as randomness.
 
 ## Firing marker
