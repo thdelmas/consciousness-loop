@@ -61,8 +61,19 @@ cp cursor/consciousness-loop.md ~/.cursor/commands/
 6. **Set the next frequency** — choose the interval from arousal.
 7. **Sleep** — schedule the next wake (or hand to an event hook). Sleeping *is* the loop working.
 
-See [`SKILL.md`](./SKILL.md) for the arousal bands, the stop conditions, the runaway guard, and the dead man's switch (the human's acknowledgement age as an arousal ceiling).
+See [`SKILL.md`](./SKILL.md) for the arousal bands, the stop conditions, the runaway guard, and the dead man's switch (the human's acknowledgement age as an arousal ceiling — `scripts/deadman.py`).
 
 ## License
 
 MIT
+
+## Dead man's switch
+
+`scripts/deadman.py` keys one stop condition to the human. Bind it in Claude Code (`~/.claude/settings.json`):
+
+```json
+"UserPromptSubmit": [{"hooks": [{"type": "command", "command": "DEADMAN_ACK=\"$HOME/.claude/state/deadman-ack\" /path/to/consciousness-loop/scripts/deadman.py", "timeout": 5}]}],
+"SessionStart":     [{"hooks": [{"type": "command", "command": "DEADMAN_ACK=\"$HOME/.claude/state/deadman-ack\" /path/to/consciousness-loop/scripts/deadman.py", "timeout": 5}]}]
+```
+
+A message from the human records the ack; each session start prints `deadman: <ceiling> — last human ack <age> ago`. Any autonomous tick runs `deadman.py ceiling` first and honours the exit code (0 full · 1 read-only · 2 memory-only · 3 deep-sleep; unknown = 3).

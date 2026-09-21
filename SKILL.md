@@ -81,7 +81,12 @@ A self-firing loop must also know when *not* to wake — this is part of the sam
   - *An ack is an act, not a receipt.* A reply, a reaction, a file the human touched. "Delivered" and "opened" do not count, and nothing the agent writes itself counts — otherwise the loop acknowledges itself.
   - *Unknown fails closed.* If the ack timestamp is missing, unreadable, or in the future, treat it as > 30 days. The unknown state is the dangerous one.
   - *Degrade, don't halt.* The pulse continues at every level; what shrinks is what the loop is allowed to do. The daily line the human reads is the ack surface — when it goes unread, that is the signal, not an obstacle to route around.
-  - Implementation is a file holding a timestamp and one check at the top of each tick. Emit the ceiling alongside the cadence, so a capped loop reads as capped, not as broken.
+  - Implementation ships as `scripts/deadman.py`: a file holding a timestamp and one check at the top of each tick. In hook mode it records an ack on `UserPromptSubmit` (the human's input channel) and prints the ceiling on `SessionStart`; `deadman.py ceiling` prints the level and exits 0–3 with it; `deadman.py ack --source <channel>` records an act from a non-hook human channel and *refuses to run from inside the agent* (`CLAUDECODE` set), so the loop cannot acknowledge itself. Emit the ceiling alongside the cadence, so a capped loop reads as capped, not as broken.
+
+    ```
+    deadman.py ceiling            # deadman: read-only — last human ack 3d00h ago via prompt   (exit 1)
+    deadman.py ack --source signal
+    ```
 
 ## Principles
 
